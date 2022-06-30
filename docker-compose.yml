@@ -35,10 +35,39 @@ services:
       elcompbase-net:
         ipv4_address: 172.28.1.2
 
+  grafana-elcompbase:
+    container_name: grafana-elcompbase
+    image: grafana/grafana:${GRAFANA_VERSION}
+    restart: on-failure
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_PASSWORD}
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - ./grafana:/etc/grafana/provisioning
+      - ./.docker-volumes/grafana:/var/lib/grafana
+    ports:
+      - ${GRAFANA_PORT}:3000
+    networks:
+      elcompbase-net:
+        ipv4_address: 172.28.1.3
+
+  prometheus-elcompbase:
+    container_name: prometheus-elcompbase
+    image: prom/prometheus:${PROMETHEUS_VERSION}
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./.docker-volumes/prometheus:/prometheus
+    ports:
+      - ${PROMETHEUS_PORT}:9090
+    networks:
+      elcompbase-net:
+        ipv4_address: 172.28.1.4
+
   elcompbase-app:
     container_name: elcompbase-app
     build: ./
-#    restart: on-failure
+    restart: on-failure
     env_file:
       - .env
     depends_on:
@@ -47,7 +76,7 @@ services:
       - ${APP_PORT}:9000
     networks:
       elcompbase-net:
-        ipv4_address: 172.28.1.3
+        ipv4_address: 172.28.1.5
 
 networks:
   elcompbase-net:

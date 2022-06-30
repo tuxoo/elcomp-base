@@ -22,6 +22,22 @@ spring:
   application:
     name: elcompbase
 
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
+
 cache:
   user-maximum-size: 100000
   user-expired-time-hours: 4
