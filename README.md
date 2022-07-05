@@ -26,7 +26,7 @@ GRAFANA_PORT=[your grafana port here]
 PROMETHEUS_VERSION=v2.36.2
 PROMETHEUS_PORT=[your prometheus port here]
 
-PASSWORD_SALT=[your salt here]
+HASH_SALT=[your salt here]
 JWT_SIGNING_KEY=[your signing key here]
 ```
 
