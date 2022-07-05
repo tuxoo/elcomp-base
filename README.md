@@ -32,8 +32,8 @@ JWT_SIGNING_KEY=[your signing key here]
 
 For successfully running liquibase need to append in db/liquibase.properties:
 ```dotenv
-username: 
-password: 
+username: [your postgres user here]
+password: [your postgres password here]
 ```
 
 For running application need to build:
