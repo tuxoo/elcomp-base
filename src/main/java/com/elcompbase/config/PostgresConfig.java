@@ -14,12 +14,6 @@ import javax.sql.DataSource;
 @Configuration(proxyBeanMethods = false)
 public class PostgresConfig {
 
-//    @Bean
-//    @ConfigurationProperties("spring.datasource")
-//    public DataSourceProperties myDataSource() {
-//        return new DataSourceProperties();
-//    }
-
     @Bean
     @ConfigurationProperties("spring.datasource.hikari")
     public HikariDataSource dataSource(DataSourceProperties properties) {

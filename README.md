@@ -9,10 +9,18 @@
 
 For application need EnvFile by Borys Pierov plugin and .env file which contains:
 ```dotenv
+IP_ADDRESS=host.docker.internal
+
+APP_PORT=[your application port here]
+APP_URL=http://localhost:${APP_PORT}
+
+API_PATH=/
+
 POSTGRES_VERSION=14
 POSTGRES_PORT=[your postgres port here]
-POSTGRES_SCHEMA=elcompbase
 POSTGRES_DB=elcompbase
+POSTGRES_SCHEMA=elcompbase
+POSTGRES_URL=jdbc:postgresql://${IP_ADDRESS}:${POSTGRES_PORT}/${POSTGRES_DB}
 POSTGRES_USER=[your postgres user here]
 POSTGRES_PASSWORD=[your postgres password here]
 
